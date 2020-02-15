@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -8,14 +10,44 @@
 <head>
 <meta charset="utf-8">
 <title>Create an account</title>
+<style type="text/css">
+body {
+	font-family: verdana;
+	font-size: 12px;
+	margin: 40px;
+}
 
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+.customerTable, .customerTable td {
+	border-collapse: collapse;
+	border: 1px solid #aaa;
+	margin: 2px;
+	padding: 2px 2px 2px 10px;
+	font-size: 12px;
+}
+
+.CustomerTable th {
+	font-weight: bold;
+	font-size: 12px;
+	background-color: #5C82FF;
+	color: white;
+}
+
+.label {
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+a, a:AFTER {
+	color: blue;
+}
+
+.error {
+	color: red;
+	font-style: italic;
+}
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
@@ -37,97 +69,74 @@
 </head>
 
 <body>
+	<h2>Create your account</h2>
+	<form:form method="POST" modelAttribute="admin" class="customerForm"
+		action="saveRegistration">
 
-	<div class="container">
-
-		<form:form method="POST" modelAttribute="userForm" class="form-signin">
-			<h2 class="form-signin-heading">Create your account</h2>
-			<spring:bind path="firstName">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="firstName" class="form-control"
-						placeholder="First Name"></form:input>
-					<form:errors path="firstName"></form:errors>
-				</div>
-			</spring:bind>
-			<spring:bind path="lastName">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="lastName" class="form-control"
-						placeholder="Last Name"></form:input>
-					<form:errors path="lastName"></form:errors>
-				</div>
-			</spring:bind>
-			<spring:bind path="dob">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="date" path="dob" class="form-control"
-						placeholder="Date of Birth"></form:input>
-					<form:errors path="dob"></form:errors>
-				</div>
-			</spring:bind>
-			<spring:bind path="gender">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:select path="gender" placeholder="Gender">
+		<table>
+			<tr>
+				<td><form:label path="firstName" cssClass="customerLabel">
+						<spring:message code="label.firstname" />
+					</form:label></td>
+				<td><form:input path="firstName" /> <form:errors
+						path="firstName" cssClass="error"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="lastName" cssClass="customerLabel">
+						<spring:message code="label.lastname" />
+					</form:label></td>
+				<td><form:input path="lastName" /> <form:errors
+						path="lastName" cssClass="error"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="dob" cssClass="customerLabel">
+						<spring:message code="label.dob" />
+					</form:label></td>
+				<td><form:input path="dob" /> <form:errors path="dob"
+						cssClass="error"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="gender" cssClass="customerLabel">
+						<spring:message code="label.gender" />
+					</form:label></td>
+				<td><form:select path="gender" placeholder="Gender">
 						<form:option value="Gender" label="Gender" />
 						<form:option value="Male" label="Male" />
 						<form:option value="Female" label="Female" />
-					</form:select>
-					<%--  <form:input type="password" path="gender" class="form-control" placeholder="Gender"></form:input> --%>
-					<form:errors path="gender"></form:errors>
-				</div>
-			</spring:bind>
-			
-			<spring:bind path="role.roleId">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:select path="role.roleId" placeholder="Role">
-						<form:option value="1" label="Admin" />
-						<form:option value="2" label="Clerk" />
-						<form:option value="3" label="Doctor" />
-						<form:option value="4" label="Patient" />
-					</form:select>
-					<%--  <form:input type="password" path="gender" class="form-control" placeholder="Gender"></form:input> --%>
-					<form:errors path="gender"></form:errors>
-				</div>
-			</spring:bind>
-			
-			<spring:bind path="contactNumber">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="contactNumber" class="form-control"
-						placeholder="Contact No"></form:input>
-					<form:errors path="contactNumber"></form:errors>
-				</div>
-			</spring:bind>
+					</form:select> <form:errors path="gender"></form:errors></td>
+			</tr>
 
-			<spring:bind path="emailId">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="emailId" class="form-control"
-						placeholder="Email ID" autofocus="true"></form:input>
-					<form:errors path="emailId"></form:errors>
-				</div>
-			</spring:bind>
+			<tr>
+				<td><form:label path="contactNumber" cssClass="customerLabel">
+						<spring:message code="label.contactnumber" />
+					</form:label></td>
+				<td><form:input path="contactNumber" /> <form:errors
+						path="contactNumber" cssClass="error"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="emailId" cssClass="customerLabel">
+						<spring:message code="label.emailid" />
+					</form:label></td>
+				<td><form:input path="emailId" /> <form:errors path="emailId"
+						cssClass="error"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="password" cssClass="customerLabel">
+						<spring:message code="label.password" />
+					</form:label></td>
+				<td><form:input type="password" path="password" /> <form:errors
+						path="password" cssClass="error"></form:errors></td>
+			</tr>
+			<tr><td></td><td><button type="submit">Submit</button></td></tr>
+		</table>
+		
 
-			<spring:bind path="password">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="password" path="password" class="form-control"
-						placeholder="Password"></form:input>
-					<form:errors path="password"></form:errors>
-				</div>
-			</spring:bind>
-
-			<%-- <spring:bind path="passwordConfirm">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input type="password" path="passwordConfirm" class="form-control"
-                                placeholder="Confirm your password"></form:input>
-                    <form:errors path="passwordConfirm"></form:errors>
-                </div>
-            </spring:bind> --%>
+	</form:form>
 
 
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-		</form:form>
-
-	</div>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>
