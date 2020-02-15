@@ -40,7 +40,9 @@
 		<beans:property name="dataSource" ref="dataSource"/>
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value></beans:value>
+				<beans:value>com.patienttracker.model.Clerk</beans:value>
+				<beans:value>com.patienttracker.model.Doctor</beans:value>
+				<beans:value>com.patienttracker.model.Patient</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -54,11 +56,18 @@
 	
 	<!-- <beans:bean id="customerService" class="com.pack.service.CustomerServiceImpl">
 		<beans:property name="customerDao" ref="customerDao"/>
-	</beans:bean>
-	
-	<beans:bean id="customerDao" class="com.pack.dao.CustomerDaoImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
 	</beans:bean> -->
+	
+	<beans:bean id="clerkDAO" class="com.patienttracker.daoimpl.ClerkDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
+	</beans:bean> 
+	
+	<beans:bean id="doctorDAO" class="com.patienttracker.daoimpl.DoctorDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
+	</beans:bean> 
+	<beans:bean id="patientDAO" class="com.patienttracker.daoimpl.PatientDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
