@@ -11,6 +11,8 @@
 </head>
 <body>
 	<%-- <% response.sendRedirect("login"); %> --%>
+	<a href="${contextPath}/home">Click here for Home</a>
+	<br/>
 	<a href="${contextPath}/login">Click here for Login & Registration</a>
 	<br />
 
