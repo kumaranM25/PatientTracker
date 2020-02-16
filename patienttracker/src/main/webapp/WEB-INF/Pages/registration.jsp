@@ -47,13 +47,14 @@ a, a:AFTER {
 	font-style: italic;
 }
 </style>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
 	});
 </script>
-<script type="text/javascript" lnaguage="javascript">
+<script type="text/javascript" language="javascript">
 	$(function() {
 		$("#datepicker").datepicker({
 			showOn : "both",
@@ -75,28 +76,28 @@ a, a:AFTER {
 
 		<table>
 			<tr>
-				<td><form:label path="firstName" cssClass="customerLabel">
+				<td><form:label path="firstName" cssClass="label">
 						<spring:message code="label.firstname" />
 					</form:label></td>
 				<td><form:input path="firstName" /> <form:errors
 						path="firstName" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
-				<td><form:label path="lastName" cssClass="customerLabel">
+				<td><form:label path="lastName" cssClass="label">
 						<spring:message code="label.lastname" />
 					</form:label></td>
 				<td><form:input path="lastName" /> <form:errors
 						path="lastName" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
-				<td><form:label path="dob" cssClass="customerLabel">
+				<td><form:label path="dob" cssClass="label">
 						<spring:message code="label.dob" />
 					</form:label></td>
 				<td><form:input path="dob" /> <form:errors path="dob"
 						cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
-				<td><form:label path="gender" cssClass="customerLabel">
+				<td><form:label path="gender" cssClass="label">
 						<spring:message code="label.gender" />
 					</form:label></td>
 				<td><form:select path="gender" placeholder="Gender">
@@ -107,21 +108,24 @@ a, a:AFTER {
 			</tr>
 
 			<tr>
-				<td><form:label path="contactNumber" cssClass="customerLabel">
+				<td><form:label path="contactNumber" cssClass="label">
 						<spring:message code="label.contactnumber" />
 					</form:label></td>
 				<td><form:input path="contactNumber" /> <form:errors
 						path="contactNumber" cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
-				<td><form:label path="emailId" cssClass="customerLabel">
+				<td><form:label path="emailId" cssClass="label">
 						<spring:message code="label.emailid" />
 					</form:label></td>
-				<td><form:input path="emailId" /> <form:errors path="emailId"
-						cssClass="error"></form:errors></td>
+				<td><form:input path="emailId" /> 
+					<form:errors path="emailId"	cssClass="error">
+					</form:errors>
+					<c:if test="${error != null}"><span class="error">${error}</span></c:if>
+				</td>
 			</tr>
 			<tr>
-				<td><form:label path="password" cssClass="customerLabel">
+				<td><form:label path="password" cssClass="label">
 						<spring:message code="label.password" />
 					</form:label></td>
 				<td><form:input type="password" path="password" /> <form:errors

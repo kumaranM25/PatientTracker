@@ -24,7 +24,6 @@ import com.patienttracker.service.LoginService;
 public class LoginController {
 	@Autowired
 	LoginService loginService;
-	
 
 	@RequestMapping("/login")
 	public String login(Model model) {
@@ -32,36 +31,32 @@ public class LoginController {
 		return "login";
 	}
 
-	/*@RequestMapping("/loginCheck")
-	public String loginValidate(@ModelAttribute("user") @Validated User user, BindingResult bindingResult,
-			Model model) {
+	/*
+	 * @RequestMapping("/loginCheck") public String
+	 * loginValidate(@ModelAttribute("user") @Validated User user, BindingResult
+	 * bindingResult, Model model) {
+	 * 
+	 * User userValue = loginService.retrieveUser(user.getEmailId()); if (userValue
+	 * != null) { if (userValue.getPassword().equals(user.getPassword())) {
+	 * model.addAttribute("user", user); return "home"; }else{
+	 * model.addAttribute("error", "Invalid Password"); } } else {
+	 * model.addAttribute("error", "Invalid Username or Password"); }
+	 * 
+	 * return "login";
+	 * 
+	 * }
+	 */
 
-		User userValue = loginService.retrieveUser(user.getEmailId());
-		if (userValue != null) {
-			if (userValue.getPassword().equals(user.getPassword())) {
-				model.addAttribute("user", user);
-				return "home";
-			}else{
-				model.addAttribute("error", "Invalid Password");
-			}
-		} else {
-			model.addAttribute("error", "Invalid Username or Password");
-		}
-
-		return "login";
-
-	}*/
-	
-	/*@RequestMapping("/login")
-	public String login(Model model, String error, String logout) {
-		if (error != null)
-			model.addAttribute("error", "Your username and password is invalid.");
-
-		if (logout != null)
-			model.addAttribute("message", "You have been logged out successfully.");
-
-		return "login";
-	}*/
+	/*
+	 * @RequestMapping("/login") public String login(Model model, String error,
+	 * String logout) { if (error != null) model.addAttribute("error",
+	 * "Your username and password is invalid.");
+	 * 
+	 * if (logout != null) model.addAttribute("message",
+	 * "You have been logged out successfully.");
+	 * 
+	 * return "login"; }
+	 */
 
 	@RequestMapping(value = "/loginError")
 	public String loginError(ModelMap model) {
@@ -72,18 +67,18 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout")
-	public String logout(ModelMap model,HttpServletRequest request,HttpServletResponse response) {
+	public String logout(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("Entered logout");
 //		model.addAttribute("user", new User());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth != null) {
+		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		model.addAttribute("message", "You have successfully logged off from application !");
 		return "login";
 
 	}
-	
+
 	@RequestMapping("/home")
 	public String HomePage() {
 
@@ -106,13 +101,17 @@ public class LoginController {
 
 			return "registration";
 		} else {
-			loginService.saveRegistration(admin);
+			try {
+				loginService.saveRegistration(admin);
+			} catch (Exception e) {
+				model.addAttribute("error", e.getMessage());
+				admin.setPassword(null);
+				return "registration";
+			}
 		}
 		model.addAttribute("message", "User Details Saved Successfully");
 		model.addAttribute("user", new User());
 		return "login";
 	}
-
-	
 
 }

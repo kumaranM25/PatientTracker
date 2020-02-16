@@ -13,23 +13,23 @@ public class Admin {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "AdminId", updatable = false, nullable = false)
 	private long adminId;
-	@Column(name = "FirstName")
+	@Column(name = "FirstName",nullable=false)
 	private String firstName;
-	@Column(name = "LastName")
+	@Column(name = "LastName",nullable=false)
 	private String lastName;
 	@Column(name = "Age")
 	private int age;
-	@Column(name = "Gender")
+	@Column(name = "Gender",nullable=false)
 	private String gender;
-	@Column(name = "ContactNumber")
+	@Column(name = "ContactNumber",nullable=false)
 	private long contactNumber;
-	@Column(name = "Password")
+	@Column(name = "Password",nullable=false)
 	private String password;
-	@Column(name = "EmailId")
+	@Column(name = "EmailId",unique=true,nullable=false)
 	private String emailId;
-	@Column(name = "DOB")
+	@Column(name = "DOB",nullable=false)
 	private String dob;
-	@Column(name = "role")
+	@Column(name = "role",nullable=false)
 	private String role;
 	private boolean enabled;
 	

@@ -21,7 +21,12 @@ public class LoginServiceImpl implements LoginService{
 		admin.setRole("ROLE_ADMIN");
 		admin.setEnabled(true);
 		admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-		loginDao.saveRegistration(admin);
+		User user = loginDao.fetchUser(admin.getEmailId());
+		if(user == null) {
+			loginDao.saveRegistration(admin);
+		}else {
+			throw new NullPointerException("Email already Exists");
+		}
 		
 	}
 
