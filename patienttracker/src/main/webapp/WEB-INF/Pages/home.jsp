@@ -57,11 +57,16 @@
 		</nav>
 
 		<div class="container">
-			<a href="${contextPath}/clerk"> Click here to Create/Maintain
-				Clerk details</a> <br /> <a href="${contextPath}/doctor"> Click
-				here to Create/Maintain Doctor details</a> <br /> <a
-				href="${contextPath}/patient"> Click here to Create/Maintain
+				<a href="${contextPath}/clerk"> Click here to Create/Maintain
+				Clerk details</a> <br /> 
+				<a href="${contextPath}/doctor"> Click here to Create/Maintain 
+				Doctor details</a> <br /> 
+				<a href="${contextPath}/patient"> Click here to Create/Maintain
 				Patient details</a> <br />
+				<a href="${contextPath}/medicine"> Click here to Create/Maintain
+				Medicine details</a> <br />
+				<a href="${contextPath}/prescription"> Click here to Create/Maintain
+				Prescription details</a> <br />				
 		</div>
 	</form:form>
 </body>
