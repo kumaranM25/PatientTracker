@@ -10,6 +10,9 @@
 <head>
 <meta charset="utf-8">
 <title>Create an account</title>
+<script src="${contextPath}/resources/js/jquery-3.4.1.min.js"></script>
+<link  href="${contextPath}/resources/css/datepicker.min.css" rel="stylesheet">
+<script src="${contextPath}/resources/js/datepicker.min.js"></script>
 <style type="text/css">
 body {
 	font-family: verdana;
@@ -49,6 +52,13 @@ a, a:AFTER {
 </style>
 
 
+<script>
+	$(function() {
+		$("#datepicker").datepicker({format: 'dd-mm-yyyy',
+			autoHide:true
+});
+	});
+</script>
 </head>
 
 <body>
@@ -75,7 +85,7 @@ a, a:AFTER {
 				<td><form:label path="dob" cssClass="label">
 						<spring:message code="label.dob" />
 					</form:label></td>
-				<td><form:input path="dob" /> <form:errors path="dob"
+				<td><form:input path="dateOfBirth" id="datepicker" /> <form:errors path="dateOfBirth"
 						cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
@@ -100,11 +110,11 @@ a, a:AFTER {
 				<td><form:label path="emailId" cssClass="label">
 						<spring:message code="label.emailid" />
 					</form:label></td>
-				<td><form:input path="emailId" /> <form:errors path="emailId"
-						cssClass="error">
-					</form:errors> <c:if test="${error != null}">
-						<span class="error">${error}</span>
-					</c:if></td>
+				<td><form:input path="emailId" /> 
+					<form:errors path="emailId"	cssClass="error">
+					</form:errors>
+					<c:if test="${error != null}"><span class="error">${error}</span></c:if>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="password" cssClass="label">
@@ -113,19 +123,10 @@ a, a:AFTER {
 				<td><form:input type="password" path="password" /> <form:errors
 						path="password" cssClass="error"></form:errors></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td><button type="submit">Submit</button></td>
-			</tr>
+			<tr><td></td><td><button type="submit">Submit</button></td></tr>
 		</table>
-
+		
 
 	</form:form>
-
-
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
 </body>
 </html>

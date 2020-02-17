@@ -12,7 +12,7 @@
 
 	<http pattern="/resources/**" security="none" />
 	<http use-expressions="true">
-		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/login*" access="permitAll" />
 		<intercept-url pattern="/registration"
 			access="permitAll" />
 		<intercept-url pattern="/saveRegistration"

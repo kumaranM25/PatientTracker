@@ -49,7 +49,7 @@
 			</c:if>
 
 			<input type="text" name="username" class="form-control"
-				placeholder="Username" /> <input type="password" name="password"
+				placeholder="EmailId" /> <input type="password" name="password"
 				class="form-control" placeholder="Password" /> <input type="hidden"
 				name="${_csrf.parameterName}" value="${_csrf.token}" />
 			

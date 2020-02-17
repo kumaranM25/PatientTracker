@@ -61,7 +61,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginError")
 	public String loginError(ModelMap model) {
 		System.out.println("Entered failure authenticatin url");
-		model.addAttribute("error", "Your username and password is invalid.");
+		model.addAttribute("error", "Your username or password is invalid.");
 		return "login";
 
 	}
