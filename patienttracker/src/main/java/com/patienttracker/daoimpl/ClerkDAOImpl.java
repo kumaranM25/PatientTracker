@@ -12,9 +12,6 @@ import com.patienttracker.model.Clerk;
 @Repository
 public class ClerkDAOImpl implements ClerkDAO {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(ClerkDAOImpl.class);
-
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -24,18 +21,11 @@ public class ClerkDAOImpl implements ClerkDAO {
 	public void addClerk(Clerk clerk) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(clerk);
-		System.out.println("Clerk details saved successfully, Clerk Details=" + clerk);
-		// logger.info("Clerk details saved successfully, Clerk
-		// Details="+clerk);
-
 	}
 
 	public void updateClerk(Clerk clerk) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(clerk);
-		System.out.println("Clerk updated successfully, Clerk Details=" + clerk);
-		// logger.info("Clerk updated successfully, Clerk Details="+clerk);
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,18 +33,15 @@ public class ClerkDAOImpl implements ClerkDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Clerk> clerksList = session.createQuery("from Clerk").list();
 		for (Clerk clerk : clerksList) {
-
 			System.out.println("Clerk List::" + clerk);
-			// logger.info("Clerk List::"+clerk);
 		}
 		return clerksList;
 	}
 
 	public Clerk getClerkById(int clerkId) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Clerk clerk = (Clerk) session.load(Clerk.class, new Integer(clerkId));
-		System.out.println("Clerk loaded successfully, Clerk details=" + clerk);
-		// logger.info("Clerk loaded successfully, Clerk details="+clerk);
+		Session session = this.sessionFactory.openSession();
+		Clerk clerk = new Clerk();
+		clerk = (Clerk) session.load(Clerk.class, new Integer(clerkId));
 		return clerk;
 	}
 
@@ -64,9 +51,5 @@ public class ClerkDAOImpl implements ClerkDAO {
 		if (null != clerk) {
 			session.delete(clerk);
 		}
-		System.out.println("Clerk deleted successfully, Clerk details=" + clerk);
-		// logger.info("Person deleted successfully, person details="+p);
-
-		
 	}
 }

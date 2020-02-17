@@ -50,6 +50,7 @@ public class DoctorController {
 			this.doctorservice.updateDoctor(doctor);
 		}
 		model.addAttribute("listDoctors", doctorservice.listDoctors());
+		model.addAttribute("message", "Doctor Details Added Successfully");
 		return "doctorDisplay";
 
 	}
@@ -59,6 +60,7 @@ public class DoctorController {
 	public String deleteDoctor(@PathVariable("doctorId") int doctorId, Model model) {
 		doctorservice.removeDoctor(doctorId);
 		model.addAttribute("listDoctors", doctorservice.listDoctors());
+		model.addAttribute("error", "Doctor Details Deleted Successfully");
 		return "doctorDisplay";
 	}
 

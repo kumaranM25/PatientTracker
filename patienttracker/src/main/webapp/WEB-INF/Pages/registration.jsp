@@ -48,25 +48,7 @@ a, a:AFTER {
 }
 </style>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script>
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-</script>
-<script type="text/javascript" language="javascript">
-	$(function() {
-		$("#datepicker").datepicker({
-			showOn : "both",
-			buttonImage : "image.jpg",
-			dateFormat : "yy-mm-dd",
-			buttonImageOnly : false,
-			minDate : +0, //you do not want to show previous date.
-			maxDate : +0
-		// you do not want to show next day.
-		});
-	});
-</script>
+
 </head>
 
 <body>
@@ -118,11 +100,11 @@ a, a:AFTER {
 				<td><form:label path="emailId" cssClass="label">
 						<spring:message code="label.emailid" />
 					</form:label></td>
-				<td><form:input path="emailId" /> 
-					<form:errors path="emailId"	cssClass="error">
-					</form:errors>
-					<c:if test="${error != null}"><span class="error">${error}</span></c:if>
-				</td>
+				<td><form:input path="emailId" /> <form:errors path="emailId"
+						cssClass="error">
+					</form:errors> <c:if test="${error != null}">
+						<span class="error">${error}</span>
+					</c:if></td>
 			</tr>
 			<tr>
 				<td><form:label path="password" cssClass="label">
@@ -131,9 +113,12 @@ a, a:AFTER {
 				<td><form:input type="password" path="password" /> <form:errors
 						path="password" cssClass="error"></form:errors></td>
 			</tr>
-			<tr><td></td><td><button type="submit">Submit</button></td></tr>
+			<tr>
+				<td></td>
+				<td><button type="submit">Submit</button></td>
+			</tr>
 		</table>
-		
+
 
 	</form:form>
 

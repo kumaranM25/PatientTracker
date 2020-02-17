@@ -6,12 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "CLERK")
@@ -39,34 +44,39 @@ public class Clerk {
 	@Column(name = "Gender")
 	private String gender;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Date_Of_Birth")
 	private String dateOfBirth;
 
 	@NotNull
+	@Min(10)
 	@Column(name = "Mobile_Number")
 	private long mobileNumber;
 
 	@Column(name = "Alt_Number")
+	@Min(10)
 	private long altMobileNumber;
 
-	@NotNull
+	@NotEmpty
+	@Email(regexp = ".+@.+\\..+")
 	@Column(name = "Email_ID")
 	private String emailId;
 
-	@NotNull
+	@NotEmpty
+	@Size(min = 5, max = 50)
 	@Column(name = "Address")
 	private String address;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "City")
 	private String city;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "State")
 	private String state;
 
 	@NotNull
+	@Min(6)
 	@Column(name = "Zip_Code")
 	private int zipCode;
 

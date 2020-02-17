@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -39,49 +40,54 @@ public class Doctor {
 	@Column(name = "Gender")
 	private String gender;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Date_Of_Birth")
 	private String dateOfBirth;
 
 	@NotNull
+	@Min(10)
 	@Column(name = "Mobile_Number")
 	private long mobileNumber;
 
+	@Min(10)
 	@Column(name = "Alt_Number")
 	private long altMobileNumber;
 
-	@NotNull
+	@NotEmpty
+	@Email(regexp = ".+@.+\\..+")
 	@Column(name = "Email_ID")
 	private String emailId;
 
-	@NotNull
+	@NotEmpty
+	@Size(min = 5, max = 50)
 	@Column(name = "Address")
 	private String address;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "City")
 	private String city;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "State")
 	private String state;
 
 	@NotNull
+	@Min(6)
 	@Column(name = "Zip_Code")
 	private int zipCode;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Degree")
 	private String degree;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Speciality")
 	private String speciality;
 
 	@Column(name = "Work_Hours")
 	private int workHours;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Hospital_Name")
 	private String hospitalName;
 

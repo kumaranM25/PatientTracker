@@ -3,11 +3,35 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Clerk Details</title>
+<style type="text/css">
+body {
+	font-family: verdana;
+	font-size: 14px;
+	margin: 40px;
+}
+
+.CustomerLabel {
+	font-family: verdana;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+a, a:AFTER {
+	color: blue;
+}
+
+.error {
+	color: red;
+	font-style: italic;
+}
+</style>
+
 </head>
 <body>
 	<center>
@@ -16,105 +40,122 @@
 	<c:url var="addAction" value="/saveClerk"></c:url>
 
 	<form:form action="${addAction}" commandName="clerk">
-		<table>
-			<c:if test="${!empty clerk.firstName }">
+		<center>
+			<table>
+				<c:if test="${!empty clerk.clerkId }">
+					<tr>
+						<td><form:label path="clerkId">
+								<spring:message code="label.clerkID" />
+							</form:label></td>
+						<td><form:input path="clerkId" readonly="true"
+								disabled="true" /> <form:hidden path="clerkId" /></td>
+					</tr>
+				</c:if>
 				<tr>
-					<td><form:label path="clerkId">
-							<spring:message code="label.clerkID" />
+					<td><form:label path="firstName" cssClass="customerLabel">
+							<spring:message code="label.firstname" />
 						</form:label></td>
-					<td><form:input path="clerkId" readonly="true" size="8"
-							disabled="true" /> <form:hidden path="clerkId" /></td>
+					<td><form:input path="firstName" /> <form:errors
+							path="firstName" cssClass="error"></form:errors></td>
 				</tr>
-			</c:if>
-			<tr>
-				<td><form:label path="firstName">
-						<spring:message code="label.firstname" />
-					</form:label></td>
-				<td><form:input path="firstName" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="lastName">
-						<spring:message code="label.lastname" />
-					</form:label></td>
-				<td><form:input path="lastName" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="age">
-						<spring:message code="label.age" />
-					</form:label></td>
-				<td><form:input path="age" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="gender">
-						<spring:message code="label.gender" />
-					</form:label></td>
-				<td><form:select path="gender">
-						<form:option value="male">Male</form:option>
-						<form:option value="female">Female</form:option>
-					</form:select></td>
-			</tr>
-			<tr>
-				<td><form:label path="dateOfBirth">
-						<spring:message code="label.dateOfBirth" />
-					</form:label></td>
-				<td><form:input path="dateOfBirth" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="mobileNumber">
-						<spring:message code="label.mobileNumber" />
-					</form:label></td>
-				<td><form:input path="mobileNumber" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="altMobileNumber">
-						<spring:message code="label.altMobileNumber" />
-					</form:label></td>
-				<td><form:input path="altMobileNumber" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="emailId">
-						<spring:message code="label.emailId" />
-					</form:label></td>
-				<td><form:input path="emailId" /></td>
-			</tr>
+				<tr>
+					<td><form:label path="lastName" cssClass="customerLabel">
+							<spring:message code="label.lastname" />
+						</form:label></td>
+					<td><form:input path="lastName" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="age" cssClass="customerLabel">
+							<spring:message code="label.age" />
+						</form:label></td>
+					<td><form:input path="age" /> <form:errors path="age"
+							cssClass="error"></form:errors></td>
+				</tr>
+				<tr>
+					<td><form:label path="gender" cssClass="customerLabel">
+							<spring:message code="label.gender" />
+						</form:label></td>
+					<td><form:select path="gender">
+							<form:option value="Gender" label="Gender" />
+							<form:option value="male">Male</form:option>
+							<form:option value="female">Female</form:option>
+						</form:select></td>
+				</tr>
+				<tr>
+					<td><form:label path="dateOfBirth" cssClass="customerLabel">
+							<spring:message code="label.dateOfBirth" />
+						</form:label></td>
+					<td><form:input path="dateOfBirth" type="date" /> <form:errors
+							path="dateOfBirth" cssClass="error"></form:errors></td>
+				</tr>
+				<tr>
+					<td><form:label path="mobileNumber" cssClass="customerLabel">
+							<spring:message code="label.mobileNumber" />
+						</form:label></td>
+					<td><form:input path="mobileNumber" /> <form:errors
+							path="mobileNumber" cssClass="error"></form:errors></td>
+				</tr>
+				<tr>
+					<td><form:label path="altMobileNumber"
+							cssClass="customerLabel">
+							<spring:message code="label.altMobileNumber" />
+						</form:label></td>
+					<td><form:input path="altMobileNumber" /> <form:errors
+							path="altMobileNumber" cssClass="error"></form:errors></td>
+				</tr>
+				<tr>
+					<td><form:label path="emailId" cssClass="customerLabel">
+							<spring:message code="label.emailId" />
+						</form:label></td>
+					<td><form:input path="emailId" /> <form:errors path="emailId"
+							cssClass="error"></form:errors></td>
+				</tr>
 
-			<tr>
-				<td><form:label path="address">
-						<spring:message code="label.address" />
-					</form:label></td>
-				<td><form:input path="address" /></td>
-			</tr>
+				<tr>
+					<td><form:label path="address" cssClass="customerLabel">
+							<spring:message code="label.address" />
+						</form:label></td>
+					<td><form:input path="address" /> <form:errors path="address"
+							cssClass="error"></form:errors></td>
+				</tr>
 
-			<tr>
-				<td><form:label path="city">
-						<spring:message code="label.city" />
-					</form:label></td>
-				<td><form:input path="city" /></td>
-			</tr>
+				<tr>
+					<td><form:label path="city" cssClass="customerLabel">
+							<spring:message code="label.city" />
+						</form:label></td>
+					<td><form:input path="city" /> <form:errors path="city"
+							cssClass="error"></form:errors></td>
+				</tr>
 
-			<tr>
-				<td><form:label path="state">
-						<spring:message code="label.state" />
-					</form:label></td>
-				<td><form:input path="state" /></td>
-			</tr>
+				<tr>
+					<td><form:label path="state" cssClass="customerLabel">
+							<spring:message code="label.state" />
+						</form:label></td>
+					<td><form:input path="state" /> <form:errors path="state"
+							cssClass="error"></form:errors></td>
+				</tr>
 
-			<tr>
-				<td><form:label path="zipCode">
-						<spring:message code="label.zipCode" />
-					</form:label></td>
-				<td><form:input path="zipCode" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><c:if test="${!empty clerk.firstName}">
-						<input type="submit"
-							value="<spring:message code="label.editClerk"/>" />
-					</c:if> <c:if test="${empty clerk.firstName}">
-						<input type="submit"
-							value="<spring:message code="label.addClerk"/>" />
-					</c:if></td>
-			</tr>
-		</table>
+				<tr>
+					<td><form:label path="zipCode" cssClass="customerLabel">
+							<spring:message code="label.zipCode" />
+						</form:label></td>
+					<td><form:input path="zipCode" /> <form:errors path="zipCode"
+							cssClass="error"></form:errors></td>
+				</tr>
+				<tr>
+					<td colspan="2"><c:if test="${!empty clerk.firstName}">
+							<input type="submit"
+								value="<spring:message code="label.editClerk"/>" />
+						</c:if> <c:if test="${empty clerk.firstName}">
+							<input type="submit"
+								value="<spring:message code="label.addClerk"/>" />
+						</c:if></td>
+					<td><input type=button value="Back" onCLick="history.back()">
+					</td>
+				</tr>
+			</table>
+		</center>
 	</form:form>
+
 </body>
 </html>

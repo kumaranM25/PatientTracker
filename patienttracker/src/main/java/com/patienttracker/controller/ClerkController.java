@@ -50,6 +50,7 @@ public class ClerkController {
 			this.clerkservice.updateClerk(clerk);
 		}
 		model.addAttribute("listClerks", clerkservice.listClerks());
+		model.addAttribute("message", "Clerk Details Added Successfully");
 		return "clerkDisplay";
 
 	}
@@ -59,6 +60,7 @@ public class ClerkController {
 	public String deleteClerk(@PathVariable("clerkId") int clerkId, Model model) {
 		clerkservice.removeClerk(clerkId);
 		model.addAttribute("listClerks", clerkservice.listClerks());
+		model.addAttribute("error", "Clerk Details Deleted Successfully");
 		return "clerkDisplay";
 	}
 
@@ -66,7 +68,7 @@ public class ClerkController {
 	public String editClerk(@PathVariable("clerkId") int clerkId, Map<String, Object> map) {
 		map.put("clerk", clerkservice.getClerkById(clerkId));
 		map.put("clerkList", clerkservice.listClerks());
-
 		return "addClerk";
 	}
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.patienttracker.model.Patient;
 import com.patienttracker.service.PatientService;
 
@@ -22,7 +23,7 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient")
 
-	public String doctorDisplay(Model model) {
+	public String patientDisplay(Model model) {
 		model.addAttribute("listPatients", patientservice.listPatients());
 		return "patientDisplay";
 	}
@@ -37,11 +38,10 @@ public class PatientController {
 
 	@RequestMapping(value = "/savePatient", method = RequestMethod.POST)
 
-	public String addDoctor(@ModelAttribute("patient") @Validated Patient patient, BindingResult bindingResult,
-			Model model) {
+	public String addPatient(@ModelAttribute("patient") @Validated Patient patient, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			
+			model.addAttribute("patientList", patientservice.listPatients());
 			return "addPatient";
 		} else if (patient.getPatientId() == 0) {
 
@@ -50,22 +50,24 @@ public class PatientController {
 			this.patientservice.updatePatient(patient);
 		}
 		model.addAttribute("listPatients", patientservice.listPatients());
+		model.addAttribute("message", "Patient Details Added Successfully");
 		return "patientDisplay";
 
 	}
-
 	@RequestMapping("patient/remove/{patientId}")
 
-	public String deleteDoctor(@PathVariable("patientId") int patientId) {
+	public String deletePatient(@PathVariable("patientId") int patientId,  Model model) {
 		patientservice.removePatient(patientId);
-		return "redirect:/doctors";
+		model.addAttribute("listPatients", patientservice.listPatients());
+		model.addAttribute("error", "Patient Details Deleted Successfully");
+		return "patientDisplay";
 	}
 
 	@RequestMapping("patient/edit/{patientId}")
-	public String editDoctor(@PathVariable("patientId") int patientId, Map<String, Object> map) {
+	public String editPatient(@PathVariable("patientId") int patientId, Map<String, Object> map) {
 		map.put("patient", patientservice.getPatientById(patientId));
 		map.put("patientList", patientservice.listPatients());
 
-		return "addDoctor";
+		return "addPatient";
 	}
 }
