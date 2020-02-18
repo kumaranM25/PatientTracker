@@ -16,4 +16,5 @@ public interface DoctorDAO {
 
 	public void removeDoctor(int doctorId);
 
+	Doctor fetchDoctor(String emailId);
 }

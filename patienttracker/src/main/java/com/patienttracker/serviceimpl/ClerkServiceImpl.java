@@ -19,7 +19,12 @@ public class ClerkServiceImpl implements ClerkService {
 
 	@Transactional
 	public void addClerk(Clerk clerk) {
-		clerkDAO.addClerk(clerk);
+		Clerk c = clerkDAO.fetchClerk(clerk.getEmailId());
+		if(c == null) {
+			clerkDAO.addClerk(clerk);
+		}else {
+			throw new NullPointerException("Clerk already Exists");
+		}
 	}
 
 	@Transactional
@@ -40,6 +45,11 @@ public class ClerkServiceImpl implements ClerkService {
 	@Transactional
 	public void removeClerk(int clerkId) {
 		clerkDAO.removeClerk(clerkId);
+	}
+
+	@Transactional
+	public Clerk retrieveClerk(String emailId) {
+		return clerkDAO.fetchClerk(emailId);
 	}
 
 }

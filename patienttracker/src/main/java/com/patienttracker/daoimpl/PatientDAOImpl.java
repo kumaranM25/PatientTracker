@@ -2,10 +2,12 @@ package com.patienttracker.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import com.patienttracker.dao.PatientDAO;
+import com.patienttracker.model.Doctor;
 import com.patienttracker.model.Patient;
 
 @Repository
@@ -54,5 +56,13 @@ public class PatientDAOImpl implements PatientDAO {
 			session.delete(patient);
 		}
 		System.out.println("Patient deleted successfully, Patient details=" + patient);
+	}
+
+	public Patient fetchPatient(String emailId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query qry = session.createQuery("from Patient where emailId=?");
+		qry.setParameter(0, emailId);
+		Patient patient = (Patient) qry.uniqueResult();
+		return patient;
 	}
 }

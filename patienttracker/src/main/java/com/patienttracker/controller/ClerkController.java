@@ -43,7 +43,14 @@ public class ClerkController {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("clerkList", clerkservice.listClerks());
 			return "addClerk";
-		} else if (clerk.getClerkId() == 0) {
+		} else
+			try {
+				clerkservice.addClerk(clerk);
+			} catch (Exception e) {
+				model.addAttribute("error", e.getMessage());
+				return "addClerk";
+			}
+		if (clerk.getClerkId() == 0) {
 
 			this.clerkservice.addClerk(clerk);
 		} else {

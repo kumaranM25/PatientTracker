@@ -15,5 +15,7 @@ public interface ClerkService {
 	public Clerk getClerkById(int clerkId);
 
 	public void removeClerk(int clerkId);
+	
+	Clerk retrieveClerk(String emailId);
 
 }

@@ -3,16 +3,58 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Patient Details</title>
+<script src="${contextPath}/resources/js/jquery-3.4.1.min.js"></script>
+<link  href="${contextPath}/resources/css/datepicker.min.css" rel="stylesheet">
+<script src="${contextPath}/resources/js/datepicker.min.js"></script>
 <style type="text/css">
 body {
 	font-family: verdana;
-	font-size: 12px;
+	font-size: 14px;
 	margin: 40px;
+	color: #d9364e;
+	backgroud-color: #b3cde0;
+	}
+
+.form {
+	max-width: 1350px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	backgroud-color: #b3cde0;
+}
+
+.form label{
+	display:block;
+	margin-bottom: 10px;
+	}
+
+.form label > span{
+	float: left;
+	width: 100px;
+	color: #F072A9;
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+.table {
+	font-family: verdana, arial, sans-serif;
+	font-size: 13px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	
+}
+
+.table.table tr {
+	background-color: #d4e3e5;
 }
 
 .CustomerLabel {
@@ -30,16 +72,26 @@ a, a:AFTER {
 	font-style: italic;
 }
 </style>
+
+<script>
+	$(function() {
+		$("#datepicker").datepicker({format: 'dd-mm-yyyy',
+			autoHide:true,
+			endDate: '31-12-2000'
+});
+	});
+</script>
+
 </head>
-<body>
+<body bgcolor = "#b3cde0">
 	<center>
 		<h1>Add Patient</h1>
 	</center>
 	<c:url var="addAction" value="/savePatient"></c:url>
-
+    <div class="form">
 	<form:form action="${addAction}" commandName="patient">
 		<center>
-			<table>
+			<table class="table">
 				<c:if test="${!empty patient.firstName }">
 					<tr>
 						<td><form:label path="patientId">
@@ -85,7 +137,7 @@ a, a:AFTER {
 					<td><form:label path="dateOfBirth" cssClass="customerLabel">
 							<spring:message code="label.dateOfBirth" />
 						</form:label></td>
-					<td><form:input path="dateOfBirth" type="date" /> <form:errors
+					<td><form:input path="dateOfBirth" id="datepicker" /> <form:errors
 							path="dateOfBirth" cssClass="error">
 						</form:errors></td>
 				</tr>
@@ -110,7 +162,10 @@ a, a:AFTER {
 						</form:label></td>
 					<td><form:input path="emailId" /> <form:errors path="emailId"
 							cssClass="error">
-						</form:errors></td>
+						</form:errors>
+						<c:if test="${error != null}">
+							<span class="error">${error}</span>
+							</c:if></td>
 				</tr>
 
 				<tr>
@@ -162,5 +217,6 @@ a, a:AFTER {
 			</table>
 		</center>
 	</form:form>
+	</div>
 </body>
 </html>

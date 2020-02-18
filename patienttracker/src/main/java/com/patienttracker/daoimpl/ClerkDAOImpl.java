@@ -2,6 +2,7 @@ package com.patienttracker.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -51,5 +52,13 @@ public class ClerkDAOImpl implements ClerkDAO {
 		if (null != clerk) {
 			session.delete(clerk);
 		}
+	}
+
+	public Clerk fetchClerk(String emailId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query qry = session.createQuery("from Clerk where emailId=?");
+		qry.setParameter(0, emailId);
+		Clerk clerk = (Clerk) qry.uniqueResult();
+		return clerk;
 	}
 }

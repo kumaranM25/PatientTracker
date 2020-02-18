@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -43,17 +44,17 @@ public class Patient {
 	private String dateOfBirth;
 
 	@NotNull
-	@Min(10)
+	@Pattern(regexp = "[0-9]{10}")
 	@Column(name = "Mobile_Number")
-	private long mobileNumber;
+	private String mobileNumber;
 
-	@Min(10)
+	@Pattern(regexp = "[0-9]{10}")
 	@Column(name = "Alt_Number")
-	private long altMobileNumber;
+	private String altMobileNumber;
 
 	@NotEmpty
 	@Email(regexp = ".+@.+\\..+")
-	@Column(name = "Email_ID")
+	@Column(name = "Email_ID", unique=true)
 	private String emailId;
 
 	@NotEmpty
@@ -70,9 +71,9 @@ public class Patient {
 	private String state;
 
 	@NotNull
-	@Min(6)
+	@Pattern(regexp = "[0-9]{6}")
 	@Column(name = "Zip_Code")
-	private int zipCode;
+	private String zipCode;
 
 	@Override
 	public String toString() {
@@ -130,19 +131,19 @@ public class Patient {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public long getAltMobileNumber() {
+	public String getAltMobileNumber() {
 		return altMobileNumber;
 	}
 
-	public void setAltMobileNumber(long altMobileNumber) {
+	public void setAltMobileNumber(String altMobileNumber) {
 		this.altMobileNumber = altMobileNumber;
 	}
 
@@ -178,11 +179,11 @@ public class Patient {
 		this.state = state;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 

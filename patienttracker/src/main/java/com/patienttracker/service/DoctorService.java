@@ -15,5 +15,7 @@ public interface DoctorService {
 	public Doctor getDoctorById(int doctorId);
 
 	public void removeDoctor(int doctorId);
+	
+	Doctor retrieveDoctor(String emailId);
 
 }

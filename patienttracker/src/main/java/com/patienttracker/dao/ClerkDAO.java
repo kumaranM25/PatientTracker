@@ -3,6 +3,7 @@ package com.patienttracker.dao;
 import java.util.List;
 import com.patienttracker.model.Clerk;
 
+
 public interface ClerkDAO {
 
 	public void addClerk(Clerk clerk);
@@ -14,5 +15,7 @@ public interface ClerkDAO {
 	public Clerk getClerkById(int clerkId);
 	
 	public void removeClerk(int clerkId);
-
+	
+	Clerk fetchClerk(String emailId);
+	
 }

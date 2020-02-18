@@ -21,46 +21,39 @@
 
 <style type="text/css">
 body {
-	font-family: verdana;
+	font-family: sans-serif;
+	color: #03396c;
 	font-size: 14px;
-	margin: 40px;
+	margin: 20px;
+		
 }
 
 .table {
+	font-family: verdana, arial, sans-serif;
+	font-size: 13px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
 	border-collapse: collapse;
-	border-spacing: 0;
-	border-color: #ccc;
 }
 
 .table td {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px 5px;
+	border-width: 2px;
+	padding: 8px;
 	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: #fff;
+	border-color: black;
 }
 
 .table th {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	padding: 10px 5px;
+	background-color: #c3dde0;
+	border-width: 2px;
+	padding: 8px;
 	border-style: solid;
-	border-width: 1px;
-	overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: pink;
+	border-color: black;
 }
 
-.table .table-4eph {
-	background-color: #f9f9f9
+.table.table tr {
+	background-color: #d4e3e5;
 }
 </style>
 </head>
@@ -68,9 +61,9 @@ body {
 	<form:form commandName="listClerks">
 		<center>
 			<h1>Clerk Maintaining Page</h1>
-			<br /> <br />
+			<br />
 			<center>
-				<h1>Clerks List</h1>
+				<h2>Clerks List</h2>
 			</center>
 
 			<c:if test="${not empty message}">

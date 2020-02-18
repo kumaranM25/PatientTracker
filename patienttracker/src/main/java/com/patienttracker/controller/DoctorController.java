@@ -43,7 +43,14 @@ public class DoctorController {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("doctorList", doctorservice.listDoctors());
 			return "addDoctor";
-		} else if (doctor.getDoctorId() == 0) {
+		} else 
+			try {
+				doctorservice.addDoctor(doctor);
+			} catch (Exception e) {
+				model.addAttribute("error", e.getMessage());
+				return "addDoctor";
+			}
+		if (doctor.getDoctorId() == 0) {
 
 			this.doctorservice.addDoctor(doctor);
 		} else {

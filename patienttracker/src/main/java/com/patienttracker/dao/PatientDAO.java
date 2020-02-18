@@ -15,5 +15,7 @@ public interface PatientDAO {
 	public Patient getPatientById(int patientId);
 	
 	public void removePatient(int patientId);
+	
+	Patient fetchPatient(String emailId);
 
 }

@@ -43,7 +43,14 @@ public class PatientController {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("patientList", patientservice.listPatients());
 			return "addPatient";
-		} else if (patient.getPatientId() == 0) {
+		} else 
+			try {
+				patientservice.addPatient(patient);
+			} catch (Exception e) {
+				model.addAttribute("error", e.getMessage());
+				return "addPatient";
+			}
+		if (patient.getPatientId() == 0) {
 
 			this.patientservice.addPatient(patient);
 		} else {

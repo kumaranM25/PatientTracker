@@ -19,7 +19,13 @@ public class PatientServiceImpl implements PatientService {
 
 	@Transactional
 	public void addPatient(Patient patient) {
-		patientDAO.addPatient(patient);
+		Patient p = patientDAO.fetchPatient(patient.getEmailId());
+		if (p == null) {
+			patientDAO.addPatient(patient);
+		} else {
+			throw new NullPointerException("Patient already Exists");
+		}
+
 	}
 
 	@Transactional
@@ -41,6 +47,11 @@ public class PatientServiceImpl implements PatientService {
 	@Transactional
 	public void removePatient(int patientId) {
 		patientDAO.removePatient(patientId);
+	}
+
+	public Patient retrievePatient(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -15,5 +15,7 @@ public interface PatientService {
 	public Patient getPatientById(int patientId);
 	
 	public void removePatient(int patientId);
+	
+	Patient retrievePatient(String emailId);
 
 }
