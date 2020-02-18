@@ -96,7 +96,9 @@
 						<td>${prescription.medicineID5}</td>
 						<td>${prescription.quantity5}</td>
 						<td>${prescription.otherInfo}</td>
-						<td>${prescription.status}</td>
+						<td><c:if test="${prescription.status == 'P'}" >Pending Bill</c:if>
+						<c:if test="${prescription.status == 'B'}" >Billed</c:if>
+						</td>
 						<td><a href="<c:url value='/editPrescription/${prescription.requestID}' />">Edit</a></td>
 						<td><a href="<c:url value='/removePrescription/${prescription.requestID}' />">Delete</a></td>
 					</tr>

@@ -1,7 +1,5 @@
 package com.patienttracker.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +27,7 @@ public class Prescription {
 
 	@NotNull
 	@Column(name = "Request_Date")
-	private Date requestDate;
+	private String requestDate;
 
 	@NotNull
 	@Column(name = "Medicine_ID1")
@@ -73,7 +71,7 @@ public class Prescription {
 		super();
 	}
 
-	public Prescription(int requestID, String patientID, String doctorID, Date requestDate, int medicineID1,
+	public Prescription(int requestID, String patientID, String doctorID, String requestDate, int medicineID1,
 			int quantity1, int medicineID2, int quantity2, int medicineID3, int quantity3, int medicineID4,
 			int quantity4, int medicineID5, int quantity5, String otherInfo, String status) {
 		super();
@@ -119,11 +117,11 @@ public class Prescription {
 		this.doctorID = doctorID;
 	}
 
-	public Date getRequestDate() {
+	public String getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) {
+	public void setRequestDate(String requestDate) {
 		this.requestDate = requestDate;
 	}
 

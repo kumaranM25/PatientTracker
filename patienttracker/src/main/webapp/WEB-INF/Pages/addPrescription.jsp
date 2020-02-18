@@ -3,11 +3,15 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Prescription Details</title>
+<script src="${contextPath}/resources/js/jquery-3.4.1.min.js"></script>
+<link  href="${contextPath}/resources/css/datepicker.min.css" rel="stylesheet">
+<script src="${contextPath}/resources/js/datepicker.min.js"></script>
 <style type="text/css">
 body {
 	font-family: verdana;
@@ -45,6 +49,13 @@ a, a:AFTER {
 	font-style: italic;
 }
 </style>
+<script>
+	$(function() {
+		$("#reqDate").datepicker({format: 'dd-mm-yyyy',
+			autoHide:true
+});
+	});
+</script>
 </head>
 <body>
 	<center>
@@ -52,9 +63,9 @@ a, a:AFTER {
 	</center>
 	<c:url var="addAction" value="/savePrescription"></c:url>
 
-	<form:form action="${addAction}" modelAttribute="prescription">
+	<form:form action="${addAction}" modelAttribute="prescription" autocomplete="off">
 		<table>
-			<c:if test="${!empty prescription.patientID }">
+			<c:if test="${ prescription.requestID != 0 }">
 				<tr>
 					<td><form:label path="requestID" cssClass="label">
 							<spring:message code="label.requestID" />
@@ -81,7 +92,7 @@ a, a:AFTER {
 				<td><form:label path="requestDate" cssClass="label">
 						<spring:message code="label.requestDate" />
 					</form:label></td>
-				<td><form:input path="requestDate" /><form:errors path="requestDate"
+				<td><form:input path="requestDate" id="reqDate" /><form:errors path="requestDate"
 						cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
@@ -165,21 +176,33 @@ a, a:AFTER {
 				<td><form:input path="otherInfo" /><form:errors path="otherInfo"
 						cssClass="error"></form:errors></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td><form:label path="status" cssClass="label">
 						<spring:message code="label.status" />
 					</form:label></td>
 				<td><form:input path="status" /><form:errors path="status"
 						cssClass="error"></form:errors></td>
-			</tr>
+			</tr> --%>
 			<tr>
-				<td colspan="2"><c:if test="${!empty prescription.patientID}">
-						<input type="submit"
-							value="<spring:message code="label.editPrescription"/>" />
-					</c:if> <c:if test="${empty prescription.patientID}">
+					<td><form:label path="status" cssClass="label">
+							<spring:message code="label.status" />
+						</form:label></td>
+					<td><form:select path="status" readonly="true">
+							
+							<form:option value="P">Pending Bill</form:option>
+							
+						</form:select><form:errors path="status"
+						cssClass="error"></form:errors></td>
+				</tr>
+			<tr>
+				<td colspan="2">
+				<c:if test="${prescription.requestID == 0}">
 						<input type="submit"
 							value="<spring:message code="label.addPrescription"/>" />
-					</c:if></td>
+					</c:if><c:if test="${prescription.requestID != 0}">
+						<input type="submit"
+							value="<spring:message code="label.editPrescription"/>" />
+					</c:if> </td>
 			</tr>
 		</table>
 	</form:form>
