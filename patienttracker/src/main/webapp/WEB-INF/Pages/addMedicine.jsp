@@ -54,7 +54,7 @@ a, a:AFTER {
 
 	<form:form action="${addAction}" commandName="medicine">
 		<table>
-			<c:if test="${!empty medicine.medicineID }">
+			<c:if test="${medicine.medicineID != 0 }">
 				<tr>
 					<td><form:label path="medicineID" cssClass="label">
 							<spring:message code="label.medicineID" />
@@ -88,17 +88,19 @@ a, a:AFTER {
 				<td><form:label path="dosage" cssClass="label">
 						<spring:message code="label.dosage" />
 					</form:label></td>
-				<td><form:input path="dosage" /><form:errors path="dosage"
+				<td><form:input path="dosage" />mg<form:errors path="dosage"
 						cssClass="error"></form:errors></td>
 			</tr>
-			
-			<tr>
-				<td><form:label path="prescribedFor" cssClass="label">
-						<spring:message code="label.prescribedFor" />
-					</form:label></td>
-				<td><form:input path="prescribedFor" /><form:errors path="prescribedFor"
+				<tr>
+					<td><form:label path="prescribedFor" cssClass="label">
+							<spring:message code="label.prescribedFor" />
+						</form:label></td>
+					<td><form:select path="prescribedFor">
+							<form:option value="A">Adult</form:option>
+							<form:option value="C">Children</form:option>
+						</form:select><form:errors path="prescribedFor"
 						cssClass="error"></form:errors></td>
-			</tr>
+				</tr>
 			<tr>
 				<td><form:label path="amount" cssClass="label">
 						<spring:message code="label.amount" />
@@ -107,10 +109,10 @@ a, a:AFTER {
 						cssClass="error"></form:errors></td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${!empty medicine.medicineDescription}">
+				<td colspan="2"><c:if test="${medicine.medicineID != 0}">
 						<input type="submit"
 							value="<spring:message code="label.editmedicine"/>" />
-					</c:if> <c:if test="${empty medicine.medicineDescription}">
+					</c:if> <c:if test="${medicine.medicineID == 0}">
 						<input type="submit"
 							value="<spring:message code="label.addmedicine"/>" />
 					</c:if></td>

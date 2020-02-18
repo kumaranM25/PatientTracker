@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,14 +25,15 @@ public class Medicine {
 	@Size(min = 2, max = 60)
 	private String medicineDescription;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Cure_For")
 	private String cureFor;
 
-	@NotNull
+	@NotEmpty
 	@Column(name = "Manufacturing_Company")
 	private String manufacturingCompany;
-
+	
+//	@Pattern(regexp = "[0-1]{3}", message = "should not be empty and must conatins 3 digits numeric value")
 	@Column(name = "Dosage")
 	private int dosage;
 
@@ -39,7 +41,7 @@ public class Medicine {
 	@Column(name = "Prescribed_For")
 	private String prescribedFor;
 
-	@NotNull
+	
 	@Column(name = "Amount")
 	private int amount;
 
