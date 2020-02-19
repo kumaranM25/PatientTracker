@@ -51,8 +51,11 @@ a, a:AFTER {
 </style>
 <script>
 	$(function() {
+		var today = new Date();
+
 		$("#reqDate").datepicker({format: 'dd-mm-yyyy',
-			autoHide:true
+			autoHide:true,
+			endDate : today
 });
 	});
 </script>
@@ -201,7 +204,7 @@ a, a:AFTER {
 							value="<spring:message code="label.addPrescription"/>" />
 					</c:if><c:if test="${prescription.requestID != 0}">
 						<input type="submit"
-							value="<spring:message code="label.editPrescription"/>" />
+							value="<spring:message code="label.updatePrescription"/>" />
 					</c:if> </td>
 			</tr>
 		</table>

@@ -54,10 +54,11 @@
 			Prescription Maintaining Page
 		</h1>
 		<br /> <br />
+		
+		<c:if test="${!empty listPrescription}">
 		<center>
 			<h1>Prescription List</h1>
 		</center>
-		<c:if test="${!empty listPrescription}">
 			<table class="table">
 				<tr>
 					<th width="80">Request_ID</th>
@@ -78,6 +79,7 @@
 					<th width="120">Status</th>
 					<th width="60">Edit</th>
 					<th width="60">Delete</th>
+					<th width="60">Bill</th>
 				</tr>
 				<c:forEach items="${listPrescription}" var="prescription">
 					<tr>
@@ -101,6 +103,14 @@
 						</td>
 						<td><a href="<c:url value='/editPrescription/${prescription.requestID}' />">Edit</a></td>
 						<td><a href="<c:url value='/removePrescription/${prescription.requestID}' />">Delete</a></td>
+						<td><c:if test="${prescription.status == 'P'}">
+						<a href="<c:url value='/createBill?requestId=${prescription.requestID}&patientID=${prescription.patientID}&doctorID=${prescription.doctorID}'/>">Create</a>
+						</c:if>
+						<c:if test="${prescription.status == 'B'}">
+						<a href="<c:url value='/viewBill/${prescription.requestID}' />">View</a>
+						</c:if>
+						</td>
+						
 					</tr>
 				</c:forEach>
 			</table>

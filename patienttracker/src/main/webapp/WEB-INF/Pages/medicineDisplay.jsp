@@ -76,8 +76,10 @@
 						<td>${medicine.medicineDescription}</td>
 						<td>${medicine.cureFor}</td>
 						<td>${medicine.manufacturingCompany}</td>
-						<td>${medicine.dosage}</td>
-						<td>${medicine.prescribedFor}</td>
+						<td>${medicine.dosage} mg</td>
+						<td><c:if test="${medicine.prescribedFor == 'A'}">Adult</c:if>
+							<c:if test="${medicine.prescribedFor == 'C'}">Child</c:if> 
+						</td>
 						<td>${medicine.amount}</td>
 						<td><a href="<c:url value='/editMedicine/${medicine.medicineID}' />">Edit</a></td>
 						<td><a href="<c:url value='/removeMedicine/${medicine.medicineID}' />">Delete</a></td>

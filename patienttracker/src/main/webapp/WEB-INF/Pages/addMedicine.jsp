@@ -111,7 +111,7 @@ a, a:AFTER {
 			<tr>
 				<td colspan="2"><c:if test="${medicine.medicineID != 0}">
 						<input type="submit"
-							value="<spring:message code="label.editmedicine"/>" />
+							value="<spring:message code="label.updateMedicine"/>" />
 					</c:if> <c:if test="${medicine.medicineID == 0}">
 						<input type="submit"
 							value="<spring:message code="label.addmedicine"/>" />

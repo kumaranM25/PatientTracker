@@ -46,6 +46,7 @@
 				<beans:value>com.patienttracker.model.Patient</beans:value>
 				<beans:value>com.patienttracker.model.Medicine</beans:value>
 				<beans:value>com.patienttracker.model.Prescription</beans:value>
+				<beans:value>com.patienttracker.model.Bill</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -79,6 +80,9 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
 	</beans:bean>
 	<beans:bean id="prescriptionDao" class="com.patienttracker.daoimpl.PrescriptionDaoImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
+	<beans:bean id="billDao" class="com.patienttracker.daoimpl.BillDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></beans:property>
 	</beans:bean>
 	
