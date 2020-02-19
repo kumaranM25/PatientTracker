@@ -10,8 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- <% response.sendRedirect("login"); %> --%>
-	<a href="${contextPath}/home">Click here for Home</a>
+	<% response.sendRedirect("home"); %>
+	<%-- <a href="${contextPath}/home">Click here for Home</a>
 	<br/>
 	<a href="${contextPath}/login">Click here for Login & Registration</a>
 	<br />
@@ -25,6 +25,6 @@
 	<br />
 	<a href="${contextPath}/patient"> Click here to Create/Maintain
 		Patient details</a>
-	<br />
+	<br /> --%>
 </body>
 </html>
